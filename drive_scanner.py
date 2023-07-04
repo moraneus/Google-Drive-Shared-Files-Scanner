@@ -4,10 +4,19 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 import os
 import pickle
+import logging
+import sys
+
+# Configure logging to write logs to a file and the console
+log_format = '%(asctime)s - %(levelname)s - %(message)s'
+logging.basicConfig(filename='drive_scanner.log', level=logging.INFO, format=log_format)
+console_handler = logging.StreamHandler(sys.stdout)
+console_handler.setLevel(logging.INFO)
+console_handler.setFormatter(logging.Formatter(log_format))
+logging.getLogger().addHandler(console_handler)
 
 # Define the scopes (permissions) you need
 SCOPES = ['https://www.googleapis.com/auth/drive']
-
 
 def main(delete):
     creds = None
@@ -40,7 +49,7 @@ def main(delete):
         items = results.get('files', [])
 
         if not items:
-            print('No files found.')
+            logging.info('No files found.')
         else:
             for item in items:
                 if item['owners'][0]['me']:
@@ -49,9 +58,9 @@ def main(delete):
                     for permission in permissions:
                         # If there are more permissions than just the owner
                         if permission['role'] != 'owner':
-                            print(f"Shared file: {item['name']} ({item['id']})")
+                            logging.info(f"Shared file: {item['name']} ({item['id']})")
                             if delete:
-                                print(f"Removing permission from file: {item['name']} ({item['id']})")
+                                logging.info(f"Removing permission from file: {item['name']} ({item['id']})")
                                 service.permissions().delete(fileId=item['id'], permissionId=permission['id']).execute()
         # Go to the next page
         request = service.files().list_next(request, results)
