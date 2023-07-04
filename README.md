@@ -112,3 +112,8 @@ When you run the script for the first time, it will open a new browser window fo
 
 If the script is not working as expected, delete the `token.json` file and run the script again to generate new credentials.
 
+## Acknowledgements
+
+This project was developed with the assistance of OpenAI's language model, ChatGPT. The model provided insights and support throughout the coding process, contributing significantly to the project's completion.
+
+
