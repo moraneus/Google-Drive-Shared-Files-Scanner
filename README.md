@@ -78,6 +78,21 @@ pip install --upgrade google-auth google-auth-httplib2 google-auth-oauthlib goog
 13. Next to the newly created OAuth 2.0 client, click the download button to download your `credentials.json` file.
 14. Save the `credentials.json` file to the directory where the Python script is located.
 
+#### Add your Google Account as a test user
+
+If you're using this application for personal use or development, you can add your Google account as a test user to bypass the verification process. This will allow you to use the application without needing additional verification steps.
+
+To add your Google Account as a test user:
+
+1. Go to the Google Cloud Console [Google Cloud Console](https://console.cloud.google.com/).
+2. Select your project.
+3. On the left sidebar, click on "OAuth consent screen".
+4. Under "Test users", click on the "Add Users" button.
+5. Enter your Google account's email address, then click "Save".
+
+You should now be able to use your application with your Google account.
+
+
 ## Usage
 
 There are two modes of operation: scan-only and delete mode.
@@ -106,14 +121,23 @@ python drive_scanner.py --delete
 ```
 
 
+### Cleanup Instructions
+
+After you have finished using the application, it is recommended to perform the following cleanup steps:
+
+1. Delete OAuth 2.0 Client ID: Go to [Google Project Credentials](https://console.cloud.google.com/apis/credentials) page. Locate the OAuth 2.0 Client ID credential and delete it.
+2. Revoke Access: Go to your [Google Account Permissions](https://myaccount.google.com/permissions) page. Locate the application name you used for this project and click on it. Then, click on the "Remove Access" or "Revoke Access" button to revoke the permissions granted to the application.
+3. Remove Test User (if applicable): If you added your Google Account as a test user to bypass the verification process.
+4. Delete your project.
+5. Delete the generated `token.json` file created locally on your project directory.
+6. Delete the `credentials.json` file from your project directory.
+
+By following these cleanup instructions, you can ensure that the application no longer has access to your Google Account and that any test user permissions are removed.
+
 ## Notes
+
+Please remember to handle sensitive data and permissions with caution. Always review the code and perform necessary security assessments to ensure the safety of your information.
 
 When you run the script for the first time, it will open a new browser window for you to log in with your Google account. Log in and allow the requested permissions. This will create a new `token.json` file with the necessary OAuth 2.0 credentials for the script to use.
 
 If the script is not working as expected, delete the `token.json` file and run the script again to generate new credentials.
-
-## Acknowledgements
-
-This project was developed with the assistance of OpenAI's language model, ChatGPT. The model provided insights and support throughout the coding process, contributing significantly to the project's completion.
-
-
