@@ -10,9 +10,10 @@ It is strongly recommended that users first manually review the shared files ide
 Only after carefully reviewing the list should you consider running the script in delete mode. And even then, proceed with caution. Always be aware of the potential consequences and make sure you're making an informed decision.
 
 Remember: once permissions are removed, the process cannot be easily reversed. Always double-check before you remove sharing permissions.
+
 **You can remove the permissions manually one-by-one**.
 
-Please use this script responsibly and double-check the files whose permissions you are removing.
+While the script has been designed to be as accurate and safe as possible, the ultimate responsibility for handling and changing files permissions lies with the user. Please use this tool responsibly and at your own risk. Double-check the files whose permissions you are removing. The author will not be held responsible for any data loss that may occur as a result of using this script.
 
 Here's a list of some well-known third-party apps that commonly use Google Drive for various functionalities such as backup, syncing, and data storage:
 
@@ -58,6 +59,12 @@ Install the prerequisites by running:
 
 ```bash
 pip install --upgrade google-auth google-auth-httplib2 google-auth-oauthlib google-api-python-client httplib2
+```
+
+or
+
+```bash
+pip install -r requirements.txt
 ```
 
 
